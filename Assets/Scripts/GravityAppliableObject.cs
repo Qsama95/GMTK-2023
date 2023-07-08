@@ -30,7 +30,7 @@ public class GravityAppliableObject : MonoBehaviour, IGravityAppliable
 
     public void OnReleaseFromExternalGravity()
     {
-        _rigidbody.useGravity = true;
+        //_rigidbody.useGravity = true;
     }
 
     public void OnGravityChanged()
