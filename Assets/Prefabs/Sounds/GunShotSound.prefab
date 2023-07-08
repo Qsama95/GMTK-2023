@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4940579500625728399}
   - component: {fileID: 4940579500625728384}
   m_Layer: 0
-  m_Name: EnteredGravitySound
+  m_Name: GunShotSound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,9 +43,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -4296012370300893534, guid: 57c4a0e294e152a40bf953c86ae99bb6,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 364462814dcf2ae4dbe581b7171b319d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 09c437ed6c766d84ea61e87e8b5d0e35, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.2
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 1
   Mute: 0
