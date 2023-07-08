@@ -6,6 +6,9 @@ public class GravityAppliableObject : MonoBehaviour, IGravityAppliable
 {
     [SerializeField , Range(25, 100)] 
     private float _externalForceFactor = 50;
+    [SerializeField]
+    private GravityAppliableObjectType _objectType;
+
     private Rigidbody _rigidbody; 
 
     private void Awake()
@@ -30,11 +33,27 @@ public class GravityAppliableObject : MonoBehaviour, IGravityAppliable
 
     public void OnReleaseFromExternalGravity()
     {
-        //_rigidbody.useGravity = true;
+        switch (_objectType)
+        {
+            case GravityAppliableObjectType.MovingPlatform:
+                _rigidbody.useGravity = false;
+                _rigidbody.velocity = Vector3.zero;
+
+                break;
+            case GravityAppliableObjectType.FreeObject:
+                _rigidbody.useGravity = true;
+                break;
+        }
     }
 
     public void OnGravityChanged()
     {
         throw new System.NotImplementedException();
     }
+}
+
+public enum GravityAppliableObjectType
+{
+    MovingPlatform,
+    FreeObject
 }
