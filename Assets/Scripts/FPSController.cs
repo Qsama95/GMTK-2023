@@ -7,7 +7,6 @@ public class FPSController : MonoBehaviour
 {
     [Header("Move Control")]
     [SerializeField] private CharacterController _characterController;
-    [SerializeField] private GravityController _gravityController;
     [SerializeField] private CharacterStatus _characterStatus;
     [SerializeField] private float _speed = 6f;
     [SerializeField] private float _gravity = -9.81f;
@@ -26,12 +25,10 @@ public class FPSController : MonoBehaviour
 
     private void Awake()
     {
-        _gravityController.ChangeGravity.AddListener(OnCharacterStatusChanged);
     }
 
     private void OnDestroy()
     {
-        _gravityController.ChangeGravity.RemoveListener(OnCharacterStatusChanged);
     }
 
     private void Start()
@@ -105,11 +102,11 @@ public class FPSController : MonoBehaviour
 
         if (_isGroundedOnGravityZone && _velocity.y < 0)
         {
-            _gravityController.ChangeGravity?.Invoke(CharacterStatus.TopOfGravityZone);
+            OnCharacterStatusChanged(CharacterStatus.TopOfGravityZone);
         }
         else
         {
-            _gravityController.ChangeGravity?.Invoke(CharacterStatus.Normal);
+            OnCharacterStatusChanged(CharacterStatus.Normal);
         }
     }
 
@@ -124,7 +121,7 @@ public class FPSController : MonoBehaviour
     }
 
     #region Listeners
-    private void OnCharacterStatusChanged(CharacterStatus status)
+    public void OnCharacterStatusChanged(CharacterStatus status)
     {
         if (_characterStatus == status) return;
         _characterStatus = status;

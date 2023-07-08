@@ -6,3 +6,8 @@ public interface IInversable
 {
     void OnHitByReverseGunBullet();
 }
+
+public interface IGravityAppliable
+{
+    void OnGravityChanged();
+}

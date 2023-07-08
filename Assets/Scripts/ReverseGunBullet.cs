@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class ReverseGunBullet : MonoBehaviour
 {
-    public LayerMask HitableLayerMask;
+    public LayerMask UnHitableLayerMask;
     public UnityEvent HitOnNotInverable;
     public UnityEvent HitOnInversable;
 
@@ -22,7 +22,7 @@ public class ReverseGunBullet : MonoBehaviour
             HitOnInversable?.Invoke();
             Destroy(gameObject);
         }
-        else if (other.gameObject.layer == HitableLayerMask)
+        else if (other.gameObject.layer != UnHitableLayerMask)
         {
             HitOnNotInverable?.Invoke();
             Destroy(gameObject);
