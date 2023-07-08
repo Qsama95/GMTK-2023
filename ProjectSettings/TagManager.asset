@@ -6,6 +6,7 @@ TagManager:
   tags:
   - GravityAppliableObject
   - DeathZone
+  - isInteractable
   layers:
   - Default
   - TransparentFX
