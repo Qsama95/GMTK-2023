@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 86429679918377354}
   - component: {fileID: 86429679918377356}
   - component: {fileID: 1484028965827487945}
+  - component: {fileID: 447096557}
   m_Layer: 0
   m_Name: CapsuleMan
   m_TagString: Player
@@ -226,6 +227,20 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &447096557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86429679918377351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baa4bd58f7fba0241b190a0893874132, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screenDimmer: {fileID: 0}
+  roomSpawnPoint: {fileID: 0}
 --- !u!1 &86429680017607451
 GameObject:
   m_ObjectHideFlags: 0
@@ -685,7 +700,7 @@ PrefabInstance:
     - target: {fileID: 4940579500625728384, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
         type: 3}
       propertyPath: m_PlayOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4940579500625728398, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
         type: 3}
