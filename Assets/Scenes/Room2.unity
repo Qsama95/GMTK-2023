@@ -4266,7 +4266,8 @@ PrefabInstance:
       propertyPath: OnShoot.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Play
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 447096557, guid: 4c7a741e7f769694389dc4178bae679a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4c7a741e7f769694389dc4178bae679a, type: 3}
 --- !u!1 &447096556 stripped
 GameObject:
@@ -4287,7 +4288,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenDimmer: {fileID: 780387326}
-  roomSpawnPoint: {fileID: 1635990487}
 --- !u!1001 &549454092
 PrefabInstance:
   m_ObjectHideFlags: 0
