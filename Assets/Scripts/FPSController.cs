@@ -20,8 +20,12 @@ public class FPSController : MonoBehaviour
 
     void Start()
     {
+        Init();
+    }
+
+    private void Init()
+    {
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     void Update()
@@ -29,25 +33,6 @@ public class FPSController : MonoBehaviour
         CheckMoveInput();
         CheckIsGrounded();
         CheckJumpInput();
-
-        if(Input.GetKeyDown(KeyCode.Tab))
-        {
-            ToggleCursor();
-        }
-    }
-
-    private void ToggleCursor()
-    {
-        if (Cursor.visible == false)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        if (Cursor.visible == true)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
     }
 
     private void CheckJumpInput()
