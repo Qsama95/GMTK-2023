@@ -29,7 +29,7 @@ public class GravityEmitter : MonoBehaviour
         {
             var inverseFactor = _inverseForce ? -1 : 1;
             _characterController.Move(
-                transform.up * _force * inverseFactor * Time.deltaTime);
+                -transform.right * _force * inverseFactor * Time.deltaTime);
         }
     }
 
