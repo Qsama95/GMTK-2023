@@ -48,7 +48,7 @@ public class GravityAppliableObject : MonoBehaviour, IGravityAppliable
 
     public void OnGravityChanged()
     {
-        throw new System.NotImplementedException();
+
     }
 }
 
