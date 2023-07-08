@@ -7,18 +7,30 @@ public class FPSController : MonoBehaviour
 {
     [Header("Move Control")]
     [SerializeField] private CharacterController _characterController;
-    [SerializeField] private float _speed = 12f;
+    [SerializeField] private GravityController _gravityController;
+    [SerializeField] private CharacterStatus _characterStatus;
+    [SerializeField] private float _speed = 6f;
     [SerializeField] private float _gravity = -9.81f;
     [SerializeField] private Vector3 _velocity;
-    [SerializeField] private float _jumpHight = 3f;
+    [SerializeField] private float _jumpHight = 2f;
 
     [Header("Ground Check")]
     [SerializeField] private Transform _groundCheckPoint;
     [SerializeField] private float _groundCheckDistance = 1f;
-    [SerializeField] private LayerMask _groundMask;
     [SerializeField] private bool _isGrounded = false;
+    [SerializeField] private LayerMask _groundMask;
 
-    void Start()
+    private void Awake()
+    {
+        _gravityController.ChangeGravity.AddListener(OnCharacterStatusChanged);
+    }
+
+    private void OnDestroy()
+    {
+        _gravityController.ChangeGravity.RemoveListener(OnCharacterStatusChanged);
+    }
+
+    private void Start()
     {
         Init();
     }
@@ -30,9 +42,23 @@ public class FPSController : MonoBehaviour
 
     void Update()
     {
-        CheckMoveInput();
-        CheckIsGrounded();
-        CheckJumpInput();
+        UpdateCharacterStatus();
+    }
+
+    private void UpdateCharacterStatus()
+    {
+        switch (_characterStatus)
+        {
+            case CharacterStatus.Normal:
+                CheckMoveInput();
+                CheckIsGrounded();
+                CheckJumpInput();
+                break;
+
+            case CharacterStatus.InGravityZone:
+                CheckMoveInput();
+                break;
+        }
     }
 
     private void CheckJumpInput()
@@ -68,4 +94,17 @@ public class FPSController : MonoBehaviour
 
         _characterController.Move(moveDir * _speed * Time.deltaTime);
     }
+
+    #region Listeners
+    private void OnCharacterStatusChanged(CharacterStatus status)
+    {
+        _characterStatus = status;
+    }
+    #endregion
+}
+
+public enum CharacterStatus
+{
+    Normal,    
+    InGravityZone,
 }

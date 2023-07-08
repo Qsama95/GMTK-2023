@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 86429679918377355}
   - component: {fileID: 86429679918377354}
   - component: {fileID: 86429679918377356}
+  - component: {fileID: 1484028965827487945}
   m_Layer: 0
   m_Name: CapsuleMan
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -67,16 +68,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterController: {fileID: 86429679918377354}
+  _gravityController: {fileID: 11400000, guid: 1507df49f7ed8aa478d0370e3bccca98, type: 2}
+  _characterStatus: 0
   _speed: 6
   _gravity: -19.62
   _velocity: {x: 0, y: 0, z: 0}
   _jumpHight: 3
   _groundCheckPoint: {fileID: 86429680017607452}
-  _groundCheckDistance: 0.1
+  _groundCheckDistance: 0.25
+  _isGrounded: 0
   _groundMask:
     serializedVersion: 2
     m_Bits: 64
-  _isGrounded: 0
+--- !u!136 &1484028965827487945
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86429679918377351}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &86429680017607451
 GameObject:
   m_ObjectHideFlags: 0
