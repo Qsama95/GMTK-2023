@@ -18,7 +18,11 @@ public class FPSController : MonoBehaviour
     [SerializeField] private Transform _groundCheckPoint;
     [SerializeField] private float _groundCheckDistance = 1f;
     [SerializeField] private bool _isGrounded = false;
+    [SerializeField] private bool _isGroundedOnGravityZone = false;
+
     [SerializeField] private LayerMask _groundMask;
+    [SerializeField] private LayerMask _gravityZoneMask;
+
 
     private void Awake()
     {
@@ -55,6 +59,12 @@ public class FPSController : MonoBehaviour
                 CheckJumpInput();
                 break;
 
+            case CharacterStatus.TopOfGravityZone:
+                CheckMoveInput();
+                CheckIsGroundedOnGravityZone();
+                CheckJumpInput();
+                break;
+
             case CharacterStatus.InGravityZone:
                 CheckMoveInput();
                 break;
@@ -63,7 +73,8 @@ public class FPSController : MonoBehaviour
 
     private void CheckJumpInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) 
+            && (_isGrounded || _isGroundedOnGravityZone))
         {
             _velocity.y = Mathf.Sqrt(_jumpHight * -2f * _gravity);
         }
@@ -85,6 +96,23 @@ public class FPSController : MonoBehaviour
         _characterController.Move(_velocity * Time.deltaTime);
     }
 
+    private void CheckIsGroundedOnGravityZone()
+    {
+        _isGroundedOnGravityZone = Physics.CheckSphere(
+            _groundCheckPoint.position,
+            _groundCheckDistance,
+            _gravityZoneMask);
+
+        if (_isGroundedOnGravityZone && _velocity.y < 0)
+        {
+            _gravityController.ChangeGravity?.Invoke(CharacterStatus.TopOfGravityZone);
+        }
+        else
+        {
+            _gravityController.ChangeGravity?.Invoke(CharacterStatus.Normal);
+        }
+    }
+
     private void CheckMoveInput()
     {
         float x = Input.GetAxis("Horizontal");
@@ -98,6 +126,7 @@ public class FPSController : MonoBehaviour
     #region Listeners
     private void OnCharacterStatusChanged(CharacterStatus status)
     {
+        if (_characterStatus == status) return;
         _characterStatus = status;
     }
     #endregion
@@ -106,5 +135,6 @@ public class FPSController : MonoBehaviour
 public enum CharacterStatus
 {
     Normal,    
+    TopOfGravityZone,
     InGravityZone,
 }

@@ -64,7 +64,7 @@ public class GravityEmitter : MonoBehaviour
         if (other.tag.CompareTo("Player") == 0)
         {
             // change player status
-            _gravityController.ChangeGravity?.Invoke(CharacterStatus.Normal);
+            _gravityController.ChangeGravity?.Invoke(CharacterStatus.TopOfGravityZone);
             PlayerEntered(null);
         }
     }

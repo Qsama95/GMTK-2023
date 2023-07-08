@@ -77,9 +77,13 @@ MonoBehaviour:
   _groundCheckPoint: {fileID: 86429680017607452}
   _groundCheckDistance: 0.25
   _isGrounded: 0
+  _isGroundedOnGravityZone: 0
   _groundMask:
     serializedVersion: 2
     m_Bits: 64
+  _gravityZoneMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!136 &1484028965827487945
 CapsuleCollider:
   m_ObjectHideFlags: 0

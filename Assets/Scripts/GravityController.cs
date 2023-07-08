@@ -29,6 +29,10 @@ public class GravityController : ScriptableObject
                 PlayerControlOccupied = false;
                 break;
 
+            case CharacterStatus.TopOfGravityZone:
+                PlayerControlOccupied = false;
+                break;
+
             case CharacterStatus.InGravityZone:
                 PlayerControlOccupied = true;
                 break;
