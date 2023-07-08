@@ -31,7 +31,7 @@ public class ReverseGunBullet : MonoBehaviour
             HitOnNotInverable?.Invoke();
             GameObject hitSound = Instantiate(HitMissSound, transform.position, Quaternion.identity);
             Destroy(hitSound, 2);
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 }
