@@ -7,18 +7,34 @@ public class FPSController : MonoBehaviour
 {
     [Header("Move Control")]
     [SerializeField] private CharacterController _characterController;
-    [SerializeField] private float _speed = 12f;
+    [SerializeField] private GravityController _gravityController;
+    [SerializeField] private CharacterStatus _characterStatus;
+    [SerializeField] private float _speed = 6f;
     [SerializeField] private float _gravity = -9.81f;
     [SerializeField] private Vector3 _velocity;
-    [SerializeField] private float _jumpHight = 3f;
+    [SerializeField] private float _jumpHight = 2f;
 
     [Header("Ground Check")]
     [SerializeField] private Transform _groundCheckPoint;
     [SerializeField] private float _groundCheckDistance = 1f;
-    [SerializeField] private LayerMask _groundMask;
     [SerializeField] private bool _isGrounded = false;
+    [SerializeField] private bool _isGroundedOnGravityZone = false;
 
-    void Start()
+    [SerializeField] private LayerMask _groundMask;
+    [SerializeField] private LayerMask _gravityZoneMask;
+
+
+    private void Awake()
+    {
+        _gravityController.ChangeGravity.AddListener(OnCharacterStatusChanged);
+    }
+
+    private void OnDestroy()
+    {
+        _gravityController.ChangeGravity.RemoveListener(OnCharacterStatusChanged);
+    }
+
+    private void Start()
     {
         Init();
     }
@@ -30,14 +46,35 @@ public class FPSController : MonoBehaviour
 
     void Update()
     {
-        CheckMoveInput();
-        CheckIsGrounded();
-        CheckJumpInput();
+        UpdateCharacterStatus();
+    }
+
+    private void UpdateCharacterStatus()
+    {
+        switch (_characterStatus)
+        {
+            case CharacterStatus.Normal:
+                CheckMoveInput();
+                CheckIsGrounded();
+                CheckJumpInput();
+                break;
+
+            case CharacterStatus.TopOfGravityZone:
+                CheckMoveInput();
+                CheckIsGroundedOnGravityZone();
+                CheckJumpInput();
+                break;
+
+            case CharacterStatus.InGravityZone:
+                CheckMoveInput();
+                break;
+        }
     }
 
     private void CheckJumpInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) 
+            && (_isGrounded || _isGroundedOnGravityZone))
         {
             _velocity.y = Mathf.Sqrt(_jumpHight * -2f * _gravity);
         }
@@ -59,6 +96,23 @@ public class FPSController : MonoBehaviour
         _characterController.Move(_velocity * Time.deltaTime);
     }
 
+    private void CheckIsGroundedOnGravityZone()
+    {
+        _isGroundedOnGravityZone = Physics.CheckSphere(
+            _groundCheckPoint.position,
+            _groundCheckDistance,
+            _gravityZoneMask);
+
+        if (_isGroundedOnGravityZone && _velocity.y < 0)
+        {
+            _gravityController.ChangeGravity?.Invoke(CharacterStatus.TopOfGravityZone);
+        }
+        else
+        {
+            _gravityController.ChangeGravity?.Invoke(CharacterStatus.Normal);
+        }
+    }
+
     private void CheckMoveInput()
     {
         float x = Input.GetAxis("Horizontal");
@@ -68,4 +122,19 @@ public class FPSController : MonoBehaviour
 
         _characterController.Move(moveDir * _speed * Time.deltaTime);
     }
+
+    #region Listeners
+    private void OnCharacterStatusChanged(CharacterStatus status)
+    {
+        if (_characterStatus == status) return;
+        _characterStatus = status;
+    }
+    #endregion
+}
+
+public enum CharacterStatus
+{
+    Normal,    
+    TopOfGravityZone,
+    InGravityZone,
 }
