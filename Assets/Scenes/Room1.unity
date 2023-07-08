@@ -136,21 +136,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594707595}
     m_Modifications:
-    - target: {fileID: 1196616785, guid: 174d2285323d32344a17356c56dda1d8, type: 3}
-      propertyPath: Loop
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1196616785, guid: 174d2285323d32344a17356c56dda1d8, type: 3}
-      propertyPath: MaxDistance
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 1196616785, guid: 174d2285323d32344a17356c56dda1d8, type: 3}
-      propertyPath: MinDistance
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1196616785, guid: 174d2285323d32344a17356c56dda1d8, type: 3}
+    - target: {fileID: 1472417525, guid: 174d2285323d32344a17356c56dda1d8, type: 3}
       propertyPath: m_PlayOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4173695614618103435, guid: 174d2285323d32344a17356c56dda1d8,
         type: 3}
@@ -25313,3 +25301,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inverseForce: 1
   _force: 5
+  gravityFieldApplySound: {fileID: 0}
