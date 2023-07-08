@@ -356,6 +356,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4173695614618103436}
     m_Modifications:
+    - target: {fileID: 6190070423921631964, guid: eb8d3e2573cfad14eb0e382557282680,
+        type: 3}
+      propertyPath: m_RenderAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190070423921631965, guid: eb8d3e2573cfad14eb0e382557282680,
+        type: 3}
+      propertyPath: InitialModule.rotation3D
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190070423921631965, guid: eb8d3e2573cfad14eb0e382557282680,
+        type: 3}
+      propertyPath: InitialModule.startRotationY.scalar
+      value: 1.5707963
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190070423921631967, guid: eb8d3e2573cfad14eb0e382557282680,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6190070424322612979, guid: eb8d3e2573cfad14eb0e382557282680,
         type: 3}
       propertyPath: m_Name
@@ -414,6 +434,26 @@ PrefabInstance:
     - target: {fileID: 6190070424322612991, guid: eb8d3e2573cfad14eb0e382557282680,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190070425172525732, guid: eb8d3e2573cfad14eb0e382557282680,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190070425737521480, guid: eb8d3e2573cfad14eb0e382557282680,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190070425737521494, guid: eb8d3e2573cfad14eb0e382557282680,
+        type: 3}
+      propertyPath: m_RenderAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190070425737521495, guid: eb8d3e2573cfad14eb0e382557282680,
+        type: 3}
+      propertyPath: InitialModule.startRotationY.scalar
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
