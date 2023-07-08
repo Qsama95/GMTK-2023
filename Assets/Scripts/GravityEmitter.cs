@@ -1,77 +1,54 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class GravityEmitter : MonoBehaviour
+public class GravityEmitter : MonoBehaviour, IInversable
 {
     [SerializeField] private GravityController _gravityController;
+    [SerializeField] private bool _isReversed = false;
 
-    [SerializeField] 
-    private bool _inverseForce;
-    [SerializeField, Range(0, 10)]
-    private float _force = 5;
-    private CharacterController _characterController;
+    public UnityEvent ApplyFowardForce;
+    public UnityEvent ApplyBackwardForce;
 
-    // Start is called before the first frame update
     private void Start()
     {
-        
+        Init();
     }
 
-    private void Update()
+    private void Init()
     {
-        ApplyForceOnPlayer();
-    }
-
-    private void ApplyForceOnPlayer()
-    {
-        if (_characterController)
+        if (_isReversed)
         {
-            var inverseFactor = _inverseForce ? -1 : 1;
-            _characterController.Move(
-                transform.up * _force * inverseFactor * Time.deltaTime);
+            ApplyBackwardForce?.Invoke();
+        }
+        else
+        {
+            ApplyFowardForce?.Invoke();
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void ChangeGravity(CharacterStatus status)
     {
-        // check if it is player
-        if (other.tag.CompareTo("Player") == 0)
-        {
-            // change player status
-            _gravityController.ChangeGravity?.Invoke(CharacterStatus.InGravityZone);
-            var controller = other.GetComponent<CharacterController>();
-            PlayerEntered(controller);
-        }
+        _gravityController.ChangeGravity?.Invoke(status);
     }
 
-    private void OnTriggerStay(Collider other)
+    public bool IsPlayerControllerOccupied()
     {
-        // check if it is player
-        if (other.tag.CompareTo("Player") == 0)
-        {
-            if (_gravityController.PlayerControlOccupied) return;
-            // change player status
-            _gravityController.ChangeGravity?.Invoke(CharacterStatus.InGravityZone);
-            var controller = other.GetComponent<CharacterController>();
-            PlayerEntered(controller);
-        }
+        return _gravityController.PlayerControlOccupied;
     }
 
-    private void OnTriggerExit(Collider other)
+    public void OnHitByReverseGunBullet()
     {
-        // check if it is player
-        if (other.tag.CompareTo("Player") == 0)
+        if (_isReversed)
         {
-            // change player status
-            _gravityController.ChangeGravity?.Invoke(CharacterStatus.TopOfGravityZone);
-            PlayerEntered(null);
+            ApplyFowardForce?.Invoke();
         }
-    }
-
-    private void PlayerEntered(CharacterController controller)
-    {
-        if (_gravityController.PlayerControlOccupied) return;
-        _characterController = controller;
+        else
+        {
+            ApplyBackwardForce?.Invoke();
+        }
+        _isReversed = !_isReversed;
     }
 }

@@ -92,6 +92,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4173695614618103436}
+  - component: {fileID: 40608469686968193}
+  - component: {fileID: 2929639475068801465}
   m_Layer: 0
   m_Name: GravityEmitter
   m_TagString: Untagged
@@ -116,6 +118,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &40608469686968193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4173695614618103435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d21a68f22e097b4a9c5ea9eb41f88e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gravityController: {fileID: 11400000, guid: 1507df49f7ed8aa478d0370e3bccca98, type: 2}
+  ApplyFowardForce:
+    m_PersistentCalls:
+      m_Calls: []
+  ApplyBackwardForce:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!65 &2929639475068801465
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4173695614618103435}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4173695614767978648
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +277,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab3ac421f722c14c82bf74323ff7504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gravityController: {fileID: 11400000, guid: 1507df49f7ed8aa478d0370e3bccca98, type: 2}
   _inverseForce: 0
   _force: 5
