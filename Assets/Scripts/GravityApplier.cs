@@ -67,9 +67,16 @@ public class GravityApplier : MonoBehaviour
         if (other.tag.CompareTo("Player") == 0)
         {
             // change player status
-            _gravityEmitter.ChangeGravity(CharacterStatus.InGravityZone);
+            var fpsController = other.GetComponent<FPSController>();
+            fpsController.OnCharacterStatusChanged(CharacterStatus.InGravityZone);
             var controller = other.GetComponent<CharacterController>();
             PlayerEntered(controller);
+        }
+        // check if it is object can be applied on gravity
+        if (other.tag.CompareTo("GravityAppliableObject") == 0)
+        {
+            var appliableObj = other.GetComponent<GravityAppliableObject>();
+            appliableObj.OnApplyExternalGravity(transform.up, _force, _inverseForce);
         }
     }
 
@@ -80,9 +87,16 @@ public class GravityApplier : MonoBehaviour
         {
             if (_gravityEmitter.IsPlayerControllerOccupied()) return;
             // change player status
-            _gravityEmitter.ChangeGravity(CharacterStatus.InGravityZone);
+            var fpsController = other.GetComponent<FPSController>();
+            fpsController.OnCharacterStatusChanged(CharacterStatus.InGravityZone);
             var controller = other.GetComponent<CharacterController>();
             PlayerEntered(controller);
+        }
+        // check if it is object can be applied on gravity
+        if (other.tag.CompareTo("GravityAppliableObject") == 0)
+        {
+            var appliableObj = other.GetComponent<GravityAppliableObject>();
+            appliableObj.OnApplyExternalGravity(transform.up, _force, _inverseForce);
         }
     }
 
@@ -92,8 +106,15 @@ public class GravityApplier : MonoBehaviour
         if (other.tag.CompareTo("Player") == 0)
         {
             // change player status
-            _gravityEmitter.ChangeGravity(CharacterStatus.TopOfGravityZone);
+            var fpsController = other.GetComponent<FPSController>();
+            fpsController.OnCharacterStatusChanged(CharacterStatus.TopOfGravityZone);
             PlayerEntered(null);
+        }
+        // check if it is object can be applied on gravity
+        if (other.tag.CompareTo("GravityAppliableObject") == 0)
+        {
+            var appliableObj = other.GetComponent<GravityAppliableObject>();
+            appliableObj.OnReleaseFromExternalGravity();
         }
     }
 
@@ -108,19 +129,18 @@ public class GravityApplier : MonoBehaviour
     private IEnumerator MoveObjectToCenterRay(Transform objTransform)
     {
         var distance = 100f;
-        var targetPos = _centerPos;
-        targetPos.x = objTransform.position.x;
-
-        UpdateDistance(objTransform);
+        var targetPos = _centerPos + transform.up;
+        targetPos.y = objTransform.position.y;
 
         while (distance > 0.01f)
         {
+            UpdateDistance(objTransform);
+
             yield return null;
         }
     }
 
     private void UpdateDistance(Transform objTransform)
     {
-
     }
 }

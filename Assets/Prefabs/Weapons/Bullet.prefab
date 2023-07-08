@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff26281ffa932c43847dcf2a75cdadc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HitableLayerMask:
+  UnHitableLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 128
   HitOnNotInverable:
     m_PersistentCalls:
       m_Calls: []
