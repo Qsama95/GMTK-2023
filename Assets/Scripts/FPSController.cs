@@ -20,7 +20,12 @@ public class FPSController : MonoBehaviour
 
     void Start()
     {
-        
+        Init();
+    }
+
+    private void Init()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
