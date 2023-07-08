@@ -8,6 +8,8 @@ public class ReverseGunBullet : MonoBehaviour
     public LayerMask UnHitableLayerMask;
     public UnityEvent HitOnNotInverable;
     public UnityEvent HitOnInversable;
+    public GameObject HitMissSound;
+    public GameObject HitSound;
 
     private void Start()
     {
@@ -25,6 +27,8 @@ public class ReverseGunBullet : MonoBehaviour
         else if (other.gameObject.layer != UnHitableLayerMask)
         {
             HitOnNotInverable?.Invoke();
+            GameObject hitSound = Instantiate(HitMissSound, transform.position, Quaternion.identity);
+            Destroy(hitSound, 2);
             Destroy(gameObject);
         }
     }

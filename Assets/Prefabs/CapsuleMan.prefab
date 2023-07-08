@@ -196,7 +196,6 @@ Transform:
   - {fileID: 86429681066167407}
   - {fileID: 86429681338356746}
   - {fileID: 86429680017607452}
-  - {fileID: 4940579500420317220}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -689,8 +688,7 @@ MonoBehaviour:
   OnShoot:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4940579500625728384, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
-          type: 3}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
         m_Mode: 1
@@ -822,81 +820,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4940579500625728399, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
     type: 3}
   m_PrefabInstance: {fileID: 539352324}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1014944683
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 86429679918377355}
-    m_Modifications:
-    - target: {fileID: 4940579500625728398, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
-        type: 3}
-      propertyPath: m_Name
-      value: GunShotSound
-      objectReference: {fileID: 0}
-    - target: {fileID: 4940579500625728399, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4940579500625728399, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4940579500625728399, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4940579500625728399, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4940579500625728399, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4940579500625728399, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4940579500625728399, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4940579500625728399, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4940579500625728399, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4940579500625728399, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4940579500625728399, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d, type: 3}
---- !u!4 &4940579500420317220 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4940579500625728399, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
-    type: 3}
-  m_PrefabInstance: {fileID: 1014944683}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1978900004
 PrefabInstance:
