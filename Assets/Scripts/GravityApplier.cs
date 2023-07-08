@@ -105,18 +105,19 @@ public class GravityApplier : MonoBehaviour
         _characterController = controller;
     }
 
-    //private IEnumerator MoveObjectToCenterRay(Transform objTransform)
-    //{
-    //    var distance = 100f;
-    //    var targetPos = _centerPos;
-    //    targetPos.x = objTransform.position.x;
+    private IEnumerator MoveObjectToCenterRay(Transform objTransform)
+    {
+        var distance = 100f;
+        var targetPos = _centerPos;
+        targetPos.x = objTransform.position.x;
 
-    //    UpdateDistance(objTransform);
+        UpdateDistance(objTransform);
 
-    //     while (distance > 0.01f)
-    //    {
-    //    }
-    //}
+        while (distance > 0.01f)
+        {
+            yield return null;
+        }
+    }
 
     private void UpdateDistance(Transform objTransform)
     {
