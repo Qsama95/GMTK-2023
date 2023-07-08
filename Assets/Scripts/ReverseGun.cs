@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class ReverseGun : MonoBehaviour
 {
     [SerializeField] private ReverseGunBulletContainer _bulletContainer;
+    [SerializeField] private ReverseGunController _gunController;
     [SerializeField] private Transform _muzzleTransform;
 
     [SerializeField, Range(1, 20)] private float _shootForce = 10;
@@ -15,7 +16,12 @@ public class ReverseGun : MonoBehaviour
 
     void Start()
     {
-        
+        Init();
+    }
+
+    private void Init()
+    {
+        _gunController.SetReverseGun(transform);            
     }
 
     void Update()

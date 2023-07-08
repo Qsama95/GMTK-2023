@@ -68,7 +68,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterController: {fileID: 86429679918377354}
-  _gravityController: {fileID: 11400000, guid: 1507df49f7ed8aa478d0370e3bccca98, type: 2}
   _characterStatus: 0
   _speed: 6
   _gravity: -19.62
@@ -78,12 +77,16 @@ MonoBehaviour:
   _groundCheckDistance: 0.25
   _isGrounded: 0
   _isGroundedOnGravityZone: 0
+  _isGroundedOnMovingPlatform: 0
   _groundMask:
     serializedVersion: 2
     m_Bits: 64
   _gravityZoneMask:
     serializedVersion: 2
     m_Bits: 128
+  _movingPlatformMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!136 &1484028965827487945
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -492,6 +495,9 @@ MonoBehaviour:
   _bulletContainer: {fileID: 11400000, guid: 0d5265a4988ac7a41a167abe46df33c7, type: 2}
   _muzzleTransform: {fileID: 2178164223755751488}
   _shootForce: 20
+  OnShoot:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7249311006574340090
 GameObject:
   m_ObjectHideFlags: 0

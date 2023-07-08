@@ -18,10 +18,14 @@ public class FPSController : MonoBehaviour
     [SerializeField] private float _groundCheckDistance = 1f;
     [SerializeField] private bool _isGrounded = false;
     [SerializeField] private bool _isGroundedOnGravityZone = false;
+    [SerializeField] private bool _isGroundedOnMovingPlatform = false;
 
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private LayerMask _gravityZoneMask;
+    [SerializeField] private LayerMask _movingPlatformMask;
 
+    public CharacterStatus CharacterStatus { 
+        get => _characterStatus; set => _characterStatus = value; }
 
     private void Awake()
     {
@@ -53,6 +57,7 @@ public class FPSController : MonoBehaviour
             case CharacterStatus.Normal:
                 CheckMoveInput();
                 CheckIsGrounded();
+                CheckIsGroundedOnMovingPlatform();
                 CheckJumpInput();
                 break;
 
@@ -64,6 +69,12 @@ public class FPSController : MonoBehaviour
 
             case CharacterStatus.InGravityZone:
                 CheckMoveInput();
+                break;
+
+            case CharacterStatus.OnMovingPlatform:
+                CheckMoveInput();
+                CheckIsGroundedOnMovingPlatform();
+                CheckJumpInput();
                 break;
         }
     }
@@ -110,6 +121,33 @@ public class FPSController : MonoBehaviour
         }
     }
 
+    private void CheckIsGroundedOnMovingPlatform()
+    {
+        _isGroundedOnMovingPlatform = Physics.CheckSphere(
+            _groundCheckPoint.position,
+            _groundCheckDistance,
+            _movingPlatformMask);
+
+        if (_isGroundedOnMovingPlatform)
+        {
+            var colliders = Physics.OverlapSphere(
+            _groundCheckPoint.position,
+            _groundCheckDistance,
+            _movingPlatformMask);
+
+            if (_isMovingByPlayer) return;
+            if (colliders.Length == 0) return;
+            _velocity = colliders[0].GetComponent<Rigidbody>().velocity;
+            OnCharacterStatusChanged(CharacterStatus.OnMovingPlatform);
+        }
+        else
+        {
+            OnCharacterStatusChanged(CharacterStatus.Normal);
+        }
+    }
+
+    private bool _isMovingByPlayer;
+
     private void CheckMoveInput()
     {
         float x = Input.GetAxis("Horizontal");
@@ -117,13 +155,37 @@ public class FPSController : MonoBehaviour
 
         Vector3 moveDir = transform.right * x + transform.forward * z;
 
+        if (moveDir.magnitude >= 0.01f)
+        {
+            _isMovingByPlayer = true;
+        }
+        else
+        {
+            _isMovingByPlayer = false;
+        }
         _characterController.Move(moveDir * _speed * Time.deltaTime);
+    }
+
+    RaycastHit rayCastHit;
+
+    private Rigidbody RayCastOnMovingPlatform()
+    {
+        var ray = new Ray(transform.position, -transform.up);
+        if (Physics.Raycast(ray, out rayCastHit, 3, _movingPlatformMask))
+        {
+            return rayCastHit.transform.GetComponent<Rigidbody>();
+        }
+        return null;
     }
 
     #region Listeners
     public void OnCharacterStatusChanged(CharacterStatus status)
     {
         if (_characterStatus == status) return;
+
+        if (_characterStatus == CharacterStatus.OnMovingPlatform &&
+            status == CharacterStatus.InGravityZone) return;
+
         _characterStatus = status;
     }
     #endregion
@@ -134,4 +196,5 @@ public enum CharacterStatus
     Normal,    
     TopOfGravityZone,
     InGravityZone,
+    OnMovingPlatform
 }

@@ -55,6 +55,9 @@ public class GravityApplier : MonoBehaviour
     {
         if (_characterController)
         {
+            if (_characterController.GetComponent<FPSController>().CharacterStatus
+    == CharacterStatus.OnMovingPlatform) return;
+
             var inverseFactor = _inverseForce ? -1 : 1;
             _characterController.Move(
                 transform.up * _force * inverseFactor * Time.deltaTime);
