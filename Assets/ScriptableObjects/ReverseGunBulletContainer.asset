@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9fc805cd9726e441b6b31ba4d975260, type: 3}
+  m_Name: ReverseGunBulletContainer
+  m_EditorClassIdentifier: 
+  _bullet: {fileID: 5413921719912973113, guid: c152fe8607570744aba1322af5317db5, type: 3}
