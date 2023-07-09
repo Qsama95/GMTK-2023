@@ -88,23 +88,23 @@ public class GravityApplier : MonoBehaviour , IFunctionInversable
         }
     }
 
-    private void OnTriggerStay (Collider other) {
-        // check if it is player
-        if (other.tag.CompareTo ("Player") == 0) {
-            if (_gravityController.PlayerControlOccupied) return;
-            // change player status
-            var fpsController = other.GetComponent<FPSController> ();
-            fpsController.OnCharacterStatusChanged (CharacterStatus.InGravityZone);
-            var controller = other.GetComponent<CharacterController> ();
-            PlayerEntered (controller);
-        }
-        // check if it is object can be applied on gravity
-        if (other.tag.CompareTo ("GravityAppliableObject") == 0) {
-            var appliableObj = other.GetComponent<GravityAppliableObject> ();
-            appliableObj.OnApplyExternalGravity (
-                transform.up, _force, _inverseForce, IsUsingByPlayer);
-        }
-    }
+    //private void OnTriggerStay (Collider other) {
+    //    // check if it is player
+    //    if (other.tag.CompareTo ("Player") == 0) {
+    //        if (_gravityController.PlayerControlOccupied) return;
+    //        // change player status
+    //        var fpsController = other.GetComponent<FPSController> ();
+    //        fpsController.OnCharacterStatusChanged (CharacterStatus.InGravityZone);
+    //        var controller = other.GetComponent<CharacterController> ();
+    //        PlayerEntered (controller);
+    //    }
+    //    // check if it is object can be applied on gravity
+    //    if (other.tag.CompareTo ("GravityAppliableObject") == 0) {
+    //        var appliableObj = other.GetComponent<GravityAppliableObject> ();
+    //        appliableObj.OnApplyExternalGravity (
+    //            transform.up, _force, _inverseForce, IsUsingByPlayer);
+    //    }
+    //}
 
     private void OnTriggerExit (Collider other) {
         // check if it is player

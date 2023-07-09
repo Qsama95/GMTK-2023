@@ -31,13 +31,14 @@ public class GravityEmitter : MonoBehaviour, IHitAttachable
         // check if emitter has gravity applier or not
         if (HasGravityApplier)
         {
+            var gravityApplier = GravityApplier.GetComponentInChildren<GravityApplier>();
+            gravityApplier.ReleaseAll();
+
             // set it on reverse gun
             _gunController.AttachObjectOnGun(
                 GravityApplier,
                 () => {
                     KidnapGravityApplier?.Invoke();
-                    var gravityApplier = GravityApplier.GetComponentInChildren<GravityApplier>();
-                    gravityApplier.ReleaseAll();
                 });
         }
         else

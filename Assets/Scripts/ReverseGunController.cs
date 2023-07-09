@@ -33,6 +33,7 @@ public class ReverseGunController : ScriptableObject
     {
         if (_attachedObject) return;
         var oldName = obj.name;
+
         var newObj = Instantiate(obj);
         newObj.name = oldName;
         Destroy(obj);
@@ -45,6 +46,7 @@ public class ReverseGunController : ScriptableObject
         ReverseGunView();
         onAttachedOnGun?.Invoke();
         OnAttachObject?.Invoke(true);
+
     }
 
     public GameObject AttachObjectOnSeat(
