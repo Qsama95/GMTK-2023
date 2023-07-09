@@ -676,7 +676,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh181300
+  m_Name: pb_Mesh240458
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1031,6 +1031,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 86429681338356747, guid: 4c7a741e7f769694389dc4178bae679a,
+        type: 3}
+      propertyPath: m_RequiresDepthTextureOption
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2178164223755751488, guid: 4c7a741e7f769694389dc4178bae679a,
         type: 3}
@@ -4004,7 +4009,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 784658f715eb0514f867600607e344a6, type: 2}
+  - {fileID: 2100000, guid: 7412a590de43c1d49a4389bab747adce, type: 2}
   - {fileID: 2100000, guid: 51d007f0a40ede94db5795273a3b1c37, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
