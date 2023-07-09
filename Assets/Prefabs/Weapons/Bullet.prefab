@@ -47,9 +47,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ff26281ffa932c43847dcf2a75cdadc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UnHitableLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
   HitOnNotInverable:
     m_PersistentCalls:
       m_Calls: []
@@ -96,10 +93,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 672592281920930058}
     m_Modifications:
+    - target: {fileID: 5183007184382761907, guid: 7e39c39f2cae24c428f734c0dd382b3c,
+        type: 3}
+      propertyPath: InitialModule.startSizeY.scalar
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5183007184592903145, guid: 7e39c39f2cae24c428f734c0dd382b3c,
         type: 3}
       propertyPath: m_Name
       value: ReverseGunProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 5183007184592903147, guid: 7e39c39f2cae24c428f734c0dd382b3c,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5183007184592903156, guid: 7e39c39f2cae24c428f734c0dd382b3c,
         type: 3}
@@ -156,7 +163,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5183007184592903157, guid: 7e39c39f2cae24c428f734c0dd382b3c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7e39c39f2cae24c428f734c0dd382b3c, type: 3}
 --- !u!4 &2269337970142868274 stripped
 Transform:
