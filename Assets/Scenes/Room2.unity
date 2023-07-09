@@ -8466,8 +8466,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 3, y: 321}
-  m_SizeDelta: {x: 340.5157, y: 96.463}
+  m_AnchoredPosition: {x: 3, y: 293.2}
+  m_SizeDelta: {x: 337.3345, y: 52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &892480070
 MonoBehaviour:
@@ -8489,7 +8489,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1719b09cd7a0c3e419dc9ea0337273aa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4139d3dde7334d449bab10e9d0587ad9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9093,7 +9093,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh185416
+  m_Name: pb_Mesh234312
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
