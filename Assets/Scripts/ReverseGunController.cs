@@ -46,7 +46,7 @@ public class ReverseGunController : ScriptableObject
         ReverseGunView();
         onAttachedOnGun?.Invoke();
         OnAttachObject?.Invoke(true);
-
+        SetAttachObjectActive(false);
     }
 
     public GameObject AttachObjectOnSeat(

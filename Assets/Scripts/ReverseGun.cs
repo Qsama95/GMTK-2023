@@ -80,7 +80,9 @@ public class ReverseGun : MonoBehaviour, IFunctionInversable {
             RightMouseClick?.Invoke (true);
             _animator.SetBool(_rightMousePressed, true);
         }
-        else {
+        else 
+        if (Input.GetMouseButtonUp(1))
+        {
             RightMouseClick?.Invoke (false);
             _animator.SetBool(_rightMousePressed, false);
         }
