@@ -69,6 +69,7 @@ public class ReverseGunController : ScriptableObject
         obj.transform.localPosition = Vector3.zero;
         obj.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
+        obj.SetActive(true);
         OnAttachOnSeat?.Invoke();
         OnAttachObject?.Invoke(false);
         return obj;
