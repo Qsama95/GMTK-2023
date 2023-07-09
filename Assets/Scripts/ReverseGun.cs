@@ -23,6 +23,7 @@ public class ReverseGun : MonoBehaviour, IFunctionInversable {
     public bool IsReversed { get; set; }
 
     private Animator _animator;
+    private string _rightMousePressed = "RightMousePressed";
     private string _functionAttached = "FunctionAttached";
     private string _reversed = "Reversed";
 
@@ -38,6 +39,7 @@ public class ReverseGun : MonoBehaviour, IFunctionInversable {
     private void Init () {
         ToggleGravity.AddListener (_gunController.ReverseObjFunction);
         ToggleGravity.AddListener (_gunController.ReverseGunView);
+        RightMouseClick.AddListener(_gunController.SetAttachObjectActive);
 
         _gunController.OnAttachObject += OnAttachObject;
     }
@@ -45,6 +47,7 @@ public class ReverseGun : MonoBehaviour, IFunctionInversable {
     private void OnDestroy () {
         ToggleGravity.RemoveListener (_gunController.ReverseObjFunction);
         ToggleGravity.RemoveListener (_gunController.ReverseGunView);
+        RightMouseClick.RemoveListener(_gunController.SetAttachObjectActive);
 
         _gunController.OnAttachObject -= OnAttachObject;
     }
@@ -61,8 +64,11 @@ public class ReverseGun : MonoBehaviour, IFunctionInversable {
 
         if (Input.GetMouseButtonDown (1)) {
             RightMouseClick?.Invoke (true);
-        } else {
+            _animator.SetBool(_rightMousePressed, true);
+        }
+        else {
             RightMouseClick?.Invoke (false);
+            _animator.SetBool(_rightMousePressed, false);
         }
 
         if (Input.GetKeyDown (KeyCode.R)) {
@@ -85,10 +91,9 @@ public class ReverseGun : MonoBehaviour, IFunctionInversable {
     public void OnToggleFunctionInverse () {
         if (IsReversed) {
             GravityPushOn?.Invoke ();
-            _animator.SetBool (_reversed, true);
         } else {
             GravityPullOn?.Invoke ();
-            _animator.SetBool (_reversed, false);
         }
+        _animator.SetBool(_reversed, IsReversed);
     }
 }

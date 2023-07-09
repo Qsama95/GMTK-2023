@@ -99,4 +99,18 @@ public class ReverseGunController : ScriptableObject
             gunInversable.OnToggleFunctionInverse();
         }
     }
+
+    public void SetAttachObjectActive(bool value)
+    {
+        if (!_attachedObject) return;
+        var gravityApplier = _attachedObject.GetComponentInChildren<GravityApplier>();
+        if (!gravityApplier) return;
+        gravityApplier.GetComponent<Collider>().enabled = value;
+        _attachedObject.SetActive(value);
+
+        if (!value)
+        {
+            gravityApplier.ReleaseAll();
+        }
+    }
 }
