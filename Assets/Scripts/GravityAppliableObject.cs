@@ -11,7 +11,8 @@ public class GravityAppliableObject : MonoBehaviour, IGravityAppliable
 
     private Rigidbody _rigidbody;
 
-    public bool IsPlayerOnIt { get; set; }
+    [SerializeField] private bool _isPlayerOnIt;
+    public bool IsPlayerOnIt { get =>_isPlayerOnIt; set => _isPlayerOnIt = value; }
 
     private void Awake()
     {
