@@ -18,6 +18,8 @@ public class ReverseGun : MonoBehaviour, IFunctionInversable
     public UnityEvent GravityPullOn;
     public UnityEvent GravityPushOn;
 
+    public UnityEvent<bool> RightMouseClick;
+
     public Transform MuzzleTransform { get => _muzzleTransform; set => _muzzleTransform = value; }
     public bool IsReversed { get; set; }
 
@@ -69,6 +71,11 @@ public class ReverseGun : MonoBehaviour, IFunctionInversable
         {
             // reverse attached obj function
             ToggleGravity?.Invoke();
+            RightMouseClick?.Invoke(true);
+        }
+        else
+        {
+            RightMouseClick?.Invoke(false);
         }
     }
 
