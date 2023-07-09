@@ -40,6 +40,7 @@ public class ReverseGunController : ScriptableObject
         _attachedObject.transform.localPosition = Vector3.zero;
         _attachedObject.transform.localRotation = Quaternion.Euler(0, 180, 0);
 
+        ReverseGunView();
         onAttachedOnGun?.Invoke();
     }
 
@@ -76,6 +77,21 @@ public class ReverseGunController : ScriptableObject
         if (functionInversable != null)
         {
             functionInversable.OnToggleFunctionInverse();
+        }
+    }
+
+    public void ReverseGunView()
+    {
+        if (!_attachedObject) return;
+        var objectIsReversed =
+            _attachedObject.GetComponentInChildren<IFunctionInversable>().IsReversed;
+
+        var gunInversable =
+            _gun.GetComponent<IFunctionInversable>();
+        if (gunInversable != null)
+        {
+            gunInversable.IsReversed = objectIsReversed;
+            gunInversable.OnToggleFunctionInverse();
         }
     }
 }
