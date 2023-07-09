@@ -14,7 +14,6 @@ public class MovingPlatformChecker : MonoBehaviour
         CheckMovingPlatform();
     }
 
-
     private RaycastHit _hit;
     private RaycastHit _lastHit;
 

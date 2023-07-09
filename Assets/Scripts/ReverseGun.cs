@@ -21,9 +21,14 @@ public class ReverseGun : MonoBehaviour, IFunctionInversable
     public Transform MuzzleTransform { get => _muzzleTransform; set => _muzzleTransform = value; }
     public bool IsReversed { get; set; }
 
+    private Animator _animator;
+    private string _functionAttached = "FunctionAttached";
+    private string _reversed = "Reversed";
+
     private void Awake()
     {
         _gunController.SetReverseGun(this);
+        _animator = GetComponent<Animator>();
     }
 
     void Start()
@@ -35,12 +40,16 @@ public class ReverseGun : MonoBehaviour, IFunctionInversable
     {
         ToggleGravity.AddListener(_gunController.ReverseObjFunction);
         ToggleGravity.AddListener(_gunController.ReverseGunView);
+
+        _gunController.OnAttachObject += OnAttachObject;
     }
 
     private void OnDestroy()
     {
         ToggleGravity.RemoveListener(_gunController.ReverseObjFunction);
         ToggleGravity.RemoveListener(_gunController.ReverseGunView);
+
+        _gunController.OnAttachObject -= OnAttachObject;
     }
 
     void Update()
@@ -69,6 +78,11 @@ public class ReverseGun : MonoBehaviour, IFunctionInversable
         var newBulletRb = newBullet.GetComponent<Rigidbody>();
         newBulletRb.AddForce(_muzzleTransform.forward * _shootForce, ForceMode.Impulse);
         OnShoot?.Invoke();
+    }
+
+    private void OnAttachObject(bool value)
+    {
+        
     }
 
     public void OnToggleFunctionInverse()
