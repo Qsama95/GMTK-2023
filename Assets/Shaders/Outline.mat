@@ -39,12 +39,12 @@ Material:
     - _AlphaClip: 0
     - _Blend: 0
     - _CastShadows: 1
-    - _Color_Sensitivity: 0.63
+    - _Color_Sensitivity: 0
     - _Cull: 0
-    - _Depth_Sensitivity: 1.6
+    - _Depth_Sensitivity: 0
     - _DstBlend: 0
-    - _Normals_Sensitivity: 1
-    - _Outline_Thickness: 1.34
+    - _Normals_Sensitivity: 0
+    - _Outline_Thickness: 0
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 1
