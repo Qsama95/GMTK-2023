@@ -10,6 +10,8 @@ public interface IHitAttachable
 public interface IFunctionInversable
 {
     void OnToggleFunctionInverse();
+
+    bool IsReversed { get; set; }
 }
 
 public interface IGravityAppliable

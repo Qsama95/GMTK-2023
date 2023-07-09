@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ReverseGun : MonoBehaviour
+public class ReverseGun : MonoBehaviour, IFunctionInversable
 {
     [SerializeField] private ReverseGunBulletContainer _bulletContainer;
     [SerializeField] private ReverseGunController _gunController;
@@ -15,7 +15,11 @@ public class ReverseGun : MonoBehaviour
     public UnityEvent OnShoot;
     public UnityEvent ToggleGravity;
 
+    public UnityEvent GravityPullOn;
+    public UnityEvent GravityPushOn;
+
     public Transform MuzzleTransform { get => _muzzleTransform; set => _muzzleTransform = value; }
+    public bool IsReversed { get; set; }
 
     private void Awake()
     {
@@ -30,11 +34,13 @@ public class ReverseGun : MonoBehaviour
     private void Init()
     {
         ToggleGravity.AddListener(_gunController.ReverseObjFunction);
+        ToggleGravity.AddListener(_gunController.ReverseGunView);
     }
 
     private void OnDestroy()
     {
         ToggleGravity.RemoveListener(_gunController.ReverseObjFunction);
+        ToggleGravity.RemoveListener(_gunController.ReverseGunView);
     }
 
     void Update()
@@ -63,5 +69,17 @@ public class ReverseGun : MonoBehaviour
         var newBulletRb = newBullet.GetComponent<Rigidbody>();
         newBulletRb.AddForce(_muzzleTransform.forward * _shootForce, ForceMode.Impulse);
         OnShoot?.Invoke();
+    }
+
+    public void OnToggleFunctionInverse()
+    {
+        if (IsReversed)
+        {
+            GravityPushOn?.Invoke();
+        }
+        else
+        {
+            GravityPullOn?.Invoke();
+        }
     }
 }

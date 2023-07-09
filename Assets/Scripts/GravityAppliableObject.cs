@@ -30,7 +30,7 @@ public class GravityAppliableObject : MonoBehaviour, IGravityAppliable
 
         var inverseFactor = inverseForce ? -1 : 1;
         _rigidbody.velocity = dir *
-            force *
+            - force *
             inverseFactor *
             _externalForceFactor *
             Time.deltaTime;

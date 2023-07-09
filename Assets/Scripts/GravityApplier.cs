@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GravityApplier : MonoBehaviour , IFunctionInversable
 {
@@ -8,7 +9,7 @@ public class GravityApplier : MonoBehaviour , IFunctionInversable
     [SerializeField]
     private GravityController _gravityController;
     [SerializeField]
-    private bool _inverseForce = true;
+    private bool _inverseForce;
     [SerializeField, Range (0, 10)]
     private float _force = 5;
 
@@ -17,6 +18,11 @@ public class GravityApplier : MonoBehaviour , IFunctionInversable
 
     public bool IsUsingByPlayer;
     public AudioSource gravityFieldApplySound;
+
+    public UnityEvent GravityPullOn;
+    public UnityEvent GravityPushOn;
+
+    public bool IsReversed { get => _inverseForce; set => _inverseForce = value; }
 
     private void Awake () {
     }
@@ -27,6 +33,7 @@ public class GravityApplier : MonoBehaviour , IFunctionInversable
 
     private void Init () {
         _centerPos = transform.position;
+        ChangeGravityEvent();
     }
 
     private void OnDestroy () {
@@ -52,7 +59,7 @@ public class GravityApplier : MonoBehaviour , IFunctionInversable
                 == CharacterStatus.OnMovingPlatform) return;
             var inverseFactor = _inverseForce ? -1 : 1;
             _characterController.Move (
-                transform.up * _force * inverseFactor * Time.deltaTime);
+                transform.up * -_force * inverseFactor * Time.deltaTime);
         }
     }
 
@@ -131,5 +138,18 @@ public class GravityApplier : MonoBehaviour , IFunctionInversable
     public void OnToggleFunctionInverse()
     {
         _inverseForce = !_inverseForce;
+        ChangeGravityEvent();
+    }
+
+    private void ChangeGravityEvent()
+    {
+        if (_inverseForce)
+        {
+            GravityPushOn?.Invoke();
+        }
+        else
+        {
+            GravityPullOn?.Invoke();
+        }
     }
 }
