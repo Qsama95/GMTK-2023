@@ -19446,7 +19446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _gunController: {fileID: 11400000, guid: 1a63afd593bb0c04aa932954203c32e7, type: 2}
-  _gravityApplier: {fileID: 3704586758553840004}
+  _gravityApplier: {fileID: 0}
   KidnapGravityApplier:
     m_PersistentCalls:
       m_Calls:

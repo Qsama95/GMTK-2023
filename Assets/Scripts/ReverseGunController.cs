@@ -72,6 +72,7 @@ public class ReverseGunController : ScriptableObject
         obj.SetActive(true);
         OnAttachOnSeat?.Invoke();
         OnAttachObject?.Invoke(false);
+        obj.GetComponentInChildren<Collider>().enabled = true;
         return obj;
     }
 
