@@ -145,6 +145,7 @@ public class GravityApplier : MonoBehaviour , IFunctionInversable
             yield return null;
         }
     }
+      
 
     public void ReleaseAll()
     {
