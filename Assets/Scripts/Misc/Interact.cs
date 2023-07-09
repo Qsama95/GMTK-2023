@@ -20,12 +20,10 @@ public class Interact : MonoBehaviour {
             if (raycastHit.transform.gameObject.tag == "isInteractable") {
                 interactableQueue.gameObject.SetActive (true);
                 if (Input.GetKeyDown (KeyCode.E)) {
-                    Debug.Log("Interacted Object name: " + raycastHit.transform.gameObject.name);
                     if (raycastHit.transform.gameObject.GetComponent<LoadNextLevel> ()) {
                         raycastHit.transform.gameObject.GetComponent<LoadNextLevel> ().OnInteract ();
                     }
                     if (raycastHit.transform.gameObject.name == "GunPickUp") {
-                        Debug.Log ("interacted with Gun");
                         reverseGun.SetActive (true);
                         raycastHit.transform.gameObject.SetActive(false);
                     }
