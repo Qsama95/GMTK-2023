@@ -33,8 +33,8 @@ public class ReverseGunController : ScriptableObject
     {
         if (_attachedObject) return;
         var oldName = obj.name;
-
         var newObj = Instantiate(obj);
+        obj.SetActive(false);
         newObj.name = oldName;
         Destroy(obj);
         _attachedObject = newObj;
