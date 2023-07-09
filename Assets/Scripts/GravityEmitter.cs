@@ -36,6 +36,8 @@ public class GravityEmitter : MonoBehaviour, IHitAttachable
                 GravityApplier,
                 () => {
                     KidnapGravityApplier?.Invoke();
+                    var gravityApplier = GravityApplier.GetComponentInChildren<GravityApplier>();
+                    gravityApplier.ReleaseAll();
                 });
         }
         else
@@ -48,6 +50,9 @@ public class GravityEmitter : MonoBehaviour, IHitAttachable
                 () => {
                     ReturnGravityApplier?.Invoke();
                 });
+
+            var gravityApplier = _gravityApplier.GetComponentInChildren<GravityApplier>();
+            gravityApplier.ReleaseAll();
         }
     }
 }

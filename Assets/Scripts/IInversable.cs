@@ -14,9 +14,12 @@ public interface IFunctionInversable
     bool IsReversed { get; set; }
 }
 
-public interface IGravityAppliable
+public interface IGravityAppliable : IGravityAppliableBase
 {
-    void OnGravityChanged();
-
     bool IsPlayerOnIt { get; set; }
+}
+
+public interface IGravityAppliableBase
+{
+    void OnGravityReleased();
 }

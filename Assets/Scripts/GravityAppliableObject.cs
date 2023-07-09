@@ -52,9 +52,9 @@ public class GravityAppliableObject : MonoBehaviour, IGravityAppliable
         }
     }
 
-    public void OnGravityChanged()
+    public void OnGravityReleased()
     {
-
+        OnReleaseFromExternalGravity();
     }
 }
 

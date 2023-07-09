@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FPSController : MonoBehaviour
+public class FPSController : MonoBehaviour, IGravityAppliableBase
 {
     [Header("Move Control")]
     [SerializeField] private CharacterController _characterController;
@@ -180,6 +180,11 @@ public class FPSController : MonoBehaviour
             status == CharacterStatus.InGravityZone) return;
 
         _characterStatus = status;
+    }
+
+    public void OnGravityReleased()
+    {
+        OnCharacterStatusChanged(CharacterStatus.Normal);
     }
     #endregion
 }

@@ -11,6 +11,8 @@ public class ReverseGunController : ScriptableObject
 
     [SerializeField] private ReverseGun _gun;
 
+    public Action<bool> OnAttachObject;
+
     public ReverseGun Gun { get => _gun; set => _gun = value; }
     public GameObject AttachedObject { get => _attachedObject; set => _attachedObject = value; }
 
@@ -42,6 +44,7 @@ public class ReverseGunController : ScriptableObject
 
         ReverseGunView();
         onAttachedOnGun?.Invoke();
+        OnAttachObject?.Invoke(true);
     }
 
     public GameObject AttachObjectOnSeat(
@@ -65,7 +68,7 @@ public class ReverseGunController : ScriptableObject
         obj.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
         OnAttachOnSeat?.Invoke();
-
+        OnAttachObject?.Invoke(false);
         return obj;
     }
 
