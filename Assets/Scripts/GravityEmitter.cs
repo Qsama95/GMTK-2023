@@ -4,16 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GravityEmitter : MonoBehaviour, IInversable
+public class GravityEmitter : MonoBehaviour, IHitAttachable
 {
-    [SerializeField] private GravityController _gravityController;
-    [SerializeField] private Transform _gravityApplier;
-    [SerializeField] private bool _isReversed = false;
+    [SerializeField] private ReverseGunController _gunController;
+    [SerializeField] private GameObject _gravityApplier;
 
-    public UnityEvent ApplyFowardForce;
-    public UnityEvent ApplyBackwardForce;
+    public bool HasGravityApplier => GravityApplier;
 
-    public bool HasGravityApplier => _gravityApplier;
+    public GameObject GravityApplier { get => _gravityApplier; set => _gravityApplier = value; }
+
+    public UnityEvent KidnapGravityApplier;
+    public UnityEvent ReturnGravityApplier;
 
     private void Start()
     {
@@ -22,44 +23,31 @@ public class GravityEmitter : MonoBehaviour, IInversable
 
     private void Init()
     {
-        if (_isReversed)
-        {
-            ApplyBackwardForce?.Invoke();
-        }
-        else
-        {
-            ApplyFowardForce?.Invoke();
-        }
-    }
 
-    public void ChangeGravity(CharacterStatus status)
-    {
-        _gravityController.ChangeGravity?.Invoke(status);
-    }
-
-    public bool IsPlayerControllerOccupied()
-    {
-        return _gravityController.PlayerControlOccupied;
     }
 
     public void OnHitByReverseGunBullet()
     {
-        if (_isReversed)
+        // check if emitter has gravity applier or not
+        if (HasGravityApplier)
         {
-            ApplyFowardForce?.Invoke();
+            // set it on reverse gun
+            _gunController.AttachObjectOnGun(
+                GravityApplier,
+                () => {
+                    KidnapGravityApplier?.Invoke();
+                });
         }
         else
         {
-            ApplyBackwardForce?.Invoke();
-        }
-        _isReversed = !_isReversed;
-    }
-
-    public void SetParent(Transform newParent)
-    {
-        if (_gravityApplier)
-        {
-            _gravityApplier.transform.SetParent(newParent);
+            // set in on emitter
+            _gravityApplier = _gunController.AttachObjectOnSeat(
+                transform,
+                GravityApplier,
+                HasGravityApplier,
+                () => {
+                    ReturnGravityApplier?.Invoke();
+                });
         }
     }
 }

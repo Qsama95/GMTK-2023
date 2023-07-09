@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnHitableLayerMask:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 128
   HitOnNotInverable:
     m_PersistentCalls:
       m_Calls: []

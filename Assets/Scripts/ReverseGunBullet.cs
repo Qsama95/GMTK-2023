@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 public class ReverseGunBullet : MonoBehaviour
 {
-    public LayerMask UnHitableLayerMask;
     public UnityEvent HitOnNotInverable;
     public UnityEvent HitOnInversable;
     public GameObject HitMissSound;
@@ -18,15 +17,15 @@ public class ReverseGunBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<IInversable>() != null)
+        if (other.GetComponent<IHitAttachable>() != null)
         {
-            other.GetComponent<IInversable>().OnHitByReverseGunBullet();
+            other.GetComponent<IHitAttachable>().OnHitByReverseGunBullet();
             HitOnInversable?.Invoke();
             Destroy(gameObject);
             GameObject hitSound = Instantiate(HitSound, transform.position, Quaternion.identity);
             Destroy(hitSound, 2);
         }
-        else if (other.gameObject.layer != UnHitableLayerMask)
+        else if (other.gameObject.layer != 7)
         {
             HitOnNotInverable?.Invoke();
             GameObject hitSound = Instantiate(HitMissSound, transform.position, Quaternion.identity);

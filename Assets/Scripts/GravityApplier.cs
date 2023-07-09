@@ -2,7 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GravityApplier : MonoBehaviour {
+public class GravityApplier : MonoBehaviour , IFunctionInversable
+{
+
+    [SerializeField]
+    private GravityController _gravityController;
     [SerializeField]
     private bool _inverseForce;
     [SerializeField, Range (0, 10)]
@@ -24,25 +28,13 @@ public class GravityApplier : MonoBehaviour {
 
     private void Init () {
         _centerPos = transform.position;
-        _gravityEmitter.ApplyFowardForce.AddListener (SetFowardForce);
-        _gravityEmitter.ApplyBackwardForce.AddListener (SetBackwardForce);
     }
 
     private void OnDestroy () {
-        _gravityEmitter.ApplyFowardForce.RemoveListener (SetFowardForce);
-        _gravityEmitter.ApplyBackwardForce.RemoveListener (SetBackwardForce);
     }
 
     private void Update () {
         ApplyForceOnPlayer ();
-    }
-
-    private void SetFowardForce () {
-        _inverseForce = false;
-    }
-
-    private void SetBackwardForce () {
-        _inverseForce = true;
     }
 
     private void ApplyForceOnPlayer () {
@@ -75,7 +67,7 @@ public class GravityApplier : MonoBehaviour {
     private void OnTriggerStay (Collider other) {
         // check if it is player
         if (other.tag.CompareTo ("Player") == 0) {
-            if (_gravityEmitter.IsPlayerControllerOccupied ()) return;
+            if (_gravityController.PlayerControlOccupied) return;
             // change player status
             var fpsController = other.GetComponent<FPSController> ();
             fpsController.OnCharacterStatusChanged (CharacterStatus.InGravityZone);
@@ -106,7 +98,7 @@ public class GravityApplier : MonoBehaviour {
     }
 
     private void PlayerEntered (CharacterController controller) {
-        if (_gravityEmitter.IsPlayerControllerOccupied ()) return;
+        if (_gravityController.PlayerControlOccupied) return;
 
         // first time player enter confirm
         _characterController = controller;
@@ -125,4 +117,9 @@ public class GravityApplier : MonoBehaviour {
     }
 
     private void UpdateDistance (Transform objTransform) { }
+
+    public void OnToggleFunctionInverse()
+    {
+        _inverseForce = !_inverseForce;
+    }
 }

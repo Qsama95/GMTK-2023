@@ -13,6 +13,14 @@ public class ReverseGun : MonoBehaviour
     [SerializeField, Range(1, 20)] private float _shootForce = 10;
 
     public UnityEvent OnShoot;
+    public UnityEvent ToggleGravity;
+
+    public Transform MuzzleTransform { get => _muzzleTransform; set => _muzzleTransform = value; }
+
+    private void Awake()
+    {
+        _gunController.SetReverseGun(this);
+    }
 
     void Start()
     {
@@ -21,7 +29,12 @@ public class ReverseGun : MonoBehaviour
 
     private void Init()
     {
-        _gunController.SetReverseGun(transform);            
+        ToggleGravity.AddListener(_gunController.ReverseObjFunction);
+    }
+
+    private void OnDestroy()
+    {
+        ToggleGravity.RemoveListener(_gunController.ReverseObjFunction);
     }
 
     void Update()
@@ -35,6 +48,12 @@ public class ReverseGun : MonoBehaviour
         {
             // shoot bullet
             Shoot();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            // reverse attached obj function
+            ToggleGravity?.Invoke();
         }
     }
 

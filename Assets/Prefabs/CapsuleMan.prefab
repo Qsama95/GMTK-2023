@@ -127,8 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab3ac421f722c14c82bf74323ff7504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gravityController: {fileID: 0}
   _inverseForce: 1
   _force: 5
+  gravityFieldApplySound: {fileID: 0}
 --- !u!1 &1048739306
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,12 +241,16 @@ MonoBehaviour:
   _groundCheckDistance: 0.25
   _isGrounded: 0
   _isGroundedOnGravityZone: 0
+  _isGroundedOnMovingPlatform: 0
   _groundMask:
     serializedVersion: 2
     m_Bits: 64
   _gravityZoneMask:
     serializedVersion: 2
     m_Bits: 128
+  _movingPlatformMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!136 &1484028965827487945
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -287,6 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenDimmer: {fileID: 0}
+  deathSound: {fileID: 0}
 --- !u!1 &86429680017607451
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,6 +690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletContainer: {fileID: 11400000, guid: 0d5265a4988ac7a41a167abe46df33c7, type: 2}
+  _gunController: {fileID: 11400000, guid: 1a63afd593bb0c04aa932954203c32e7, type: 2}
   _muzzleTransform: {fileID: 2178164223755751488}
   _shootForce: 20
   OnShoot:
@@ -724,7 +732,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7249311006574340090}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.978}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

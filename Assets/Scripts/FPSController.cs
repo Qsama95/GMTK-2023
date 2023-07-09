@@ -166,18 +166,6 @@ public class FPSController : MonoBehaviour
         _characterController.Move(moveDir * _speed * Time.deltaTime);
     }
 
-    RaycastHit rayCastHit;
-
-    private Rigidbody RayCastOnMovingPlatform()
-    {
-        var ray = new Ray(transform.position, -transform.up);
-        if (Physics.Raycast(ray, out rayCastHit, 3, _movingPlatformMask))
-        {
-            return rayCastHit.transform.GetComponent<Rigidbody>();
-        }
-        return null;
-    }
-
     #region Listeners
     public void OnCharacterStatusChanged(CharacterStatus status)
     {

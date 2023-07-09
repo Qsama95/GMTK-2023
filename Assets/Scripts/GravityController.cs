@@ -36,6 +36,10 @@ public class GravityController : ScriptableObject
             case CharacterStatus.InGravityZone:
                 PlayerControlOccupied = true;
                 break;
+
+            case CharacterStatus.OnMovingPlatform:
+                PlayerControlOccupied = true;
+                break;
         }
     }
 }

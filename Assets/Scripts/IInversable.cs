@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IInversable
+public interface IHitAttachable
 {
     void OnHitByReverseGunBullet();
+}
+
+public interface IFunctionInversable
+{
+    void OnToggleFunctionInverse();
 }
 
 public interface IGravityAppliable
