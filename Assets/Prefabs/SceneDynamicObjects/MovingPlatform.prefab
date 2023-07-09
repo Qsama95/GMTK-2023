@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7681334558107744047}
   - component: {fileID: 7681334558107744042}
   - component: {fileID: 7681334558107744043}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: MovingPlatform
   m_TagString: GravityAppliableObject
   m_Icon: {fileID: 0}
@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _externalForceFactor: 50
+  _objectType: 0
 --- !u!54 &7681334558107744043
 Rigidbody:
   m_ObjectHideFlags: 0
