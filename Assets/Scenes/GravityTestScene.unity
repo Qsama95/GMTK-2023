@@ -277,6 +277,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GravityEmitter (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4173695614618103435, guid: 174d2285323d32344a17356c56dda1d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4173695614618103436, guid: 174d2285323d32344a17356c56dda1d8,
         type: 3}
       propertyPath: m_RootOrder
@@ -455,7 +460,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2805740
+  m_Name: pb_Mesh-1727850
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -624,6 +629,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GravityEmitter (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4173695614618103435, guid: 174d2285323d32344a17356c56dda1d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4173695614618103436, guid: 174d2285323d32344a17356c56dda1d8,
         type: 3}
@@ -811,6 +821,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _externalForceFactor: 50
   _objectType: 0
+  _isPlayerOnIt: 0
 --- !u!1 &496893290
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,6 +864,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GravityEmitter (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4173695614618103435, guid: 174d2285323d32344a17356c56dda1d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4173695614618103436, guid: 174d2285323d32344a17356c56dda1d8,
         type: 3}
@@ -958,6 +974,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GravityEmitter (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4173695614618103435, guid: 174d2285323d32344a17356c56dda1d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4173695614618103436, guid: 174d2285323d32344a17356c56dda1d8,
         type: 3}
@@ -1077,6 +1098,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GravityEmitter (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 4173695614618103435, guid: 174d2285323d32344a17356c56dda1d8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4173695614618103436, guid: 174d2285323d32344a17356c56dda1d8,
         type: 3}
       propertyPath: m_RootOrder
@@ -1140,7 +1166,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-2805728
+  m_Name: pb_Mesh-1727838
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1409,6 +1435,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1485835249, guid: 4c7a741e7f769694389dc4178bae679a, type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 86429681058660802}
+    - target: {fileID: 1485835249, guid: 4c7a741e7f769694389dc4178bae679a, type: 3}
+      propertyPath: reverseGun
+      value: 
+      objectReference: {fileID: 86429681058660801}
     - target: {fileID: 86429679918377351, guid: 4c7a741e7f769694389dc4178bae679a,
         type: 3}
       propertyPath: m_Name
@@ -1469,8 +1503,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8665931662009108312, guid: 4c7a741e7f769694389dc4178bae679a,
+        type: 3}
+      propertyPath: RightMouseClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8665931662009108312, guid: 4c7a741e7f769694389dc4178bae679a,
+        type: 3}
+      propertyPath: RightMouseClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8665931662009108312, guid: 4c7a741e7f769694389dc4178bae679a,
+        type: 3}
+      propertyPath: RightMouseClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c7a741e7f769694389dc4178bae679a, type: 3}
+--- !u!1 &86429681058660801 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2214025458536674496, guid: 4c7a741e7f769694389dc4178bae679a,
+    type: 3}
+  m_PrefabInstance: {fileID: 86429681058660800}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &86429681058660802 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 86429681338356743, guid: 4c7a741e7f769694389dc4178bae679a,
+    type: 3}
+  m_PrefabInstance: {fileID: 86429681058660800}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &509301110189559453
 MonoBehaviour:
   m_ObjectHideFlags: 0

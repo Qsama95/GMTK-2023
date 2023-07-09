@@ -4,13 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ReverseGun : MonoBehaviour, IFunctionInversable
-{
+public class ReverseGun : MonoBehaviour, IFunctionInversable {
     [SerializeField] private ReverseGunBulletContainer _bulletContainer;
     [SerializeField] private ReverseGunController _gunController;
     [SerializeField] private Transform _muzzleTransform;
 
-    [SerializeField, Range(1, 20)] private float _shootForce = 10;
+    [SerializeField, Range (1, 20)] private float _shootForce = 10;
 
     public UnityEvent OnShoot;
     public UnityEvent ToggleGravity;
@@ -27,80 +26,69 @@ public class ReverseGun : MonoBehaviour, IFunctionInversable
     private string _functionAttached = "FunctionAttached";
     private string _reversed = "Reversed";
 
-    private void Awake()
-    {
-        _gunController.SetReverseGun(this);
-        _animator = GetComponent<Animator>();
+    private void Awake () {
+        _gunController.SetReverseGun (this);
+        _animator = GetComponent<Animator> ();
     }
 
-    void Start()
-    {
-        Init();
+    void Start () {
+        Init ();
     }
 
-    private void Init()
-    {
-        ToggleGravity.AddListener(_gunController.ReverseObjFunction);
-        ToggleGravity.AddListener(_gunController.ReverseGunView);
+    private void Init () {
+        ToggleGravity.AddListener (_gunController.ReverseObjFunction);
+        ToggleGravity.AddListener (_gunController.ReverseGunView);
 
         _gunController.OnAttachObject += OnAttachObject;
     }
 
-    private void OnDestroy()
-    {
-        ToggleGravity.RemoveListener(_gunController.ReverseObjFunction);
-        ToggleGravity.RemoveListener(_gunController.ReverseGunView);
+    private void OnDestroy () {
+        ToggleGravity.RemoveListener (_gunController.ReverseObjFunction);
+        ToggleGravity.RemoveListener (_gunController.ReverseGunView);
 
         _gunController.OnAttachObject -= OnAttachObject;
     }
 
-    void Update()
-    {
-        CheckPlayerInput();
+    void Update () {
+        CheckPlayerInput ();
     }
 
-    private void CheckPlayerInput()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
+    private void CheckPlayerInput () {
+        if (Input.GetMouseButtonDown (0)) {
             // shoot bullet
-            Shoot();
+            Shoot ();
         }
 
-        if (Input.GetMouseButtonDown(1))
-        {
+        if (Input.GetMouseButton (1)) {
+            RightMouseClick?.Invoke (true);
+        } else {
+            RightMouseClick?.Invoke (false);
+        }
+
+        if (Input.GetKeyDown (KeyCode.R)) {
             // reverse attached obj function
-            ToggleGravity?.Invoke();
-            RightMouseClick?.Invoke(true);
-        }
-        else
-        {
-            RightMouseClick?.Invoke(false);
+            ToggleGravity?.Invoke ();
         }
     }
 
-    private void Shoot()
-    {
-        var newBullet = _bulletContainer.SpawnBullet(_muzzleTransform.position);
-        var newBulletRb = newBullet.GetComponent<Rigidbody>();
-        newBulletRb.AddForce(_muzzleTransform.forward * _shootForce, ForceMode.Impulse);
-        OnShoot?.Invoke();
+    private void Shoot () {
+        var newBullet = _bulletContainer.SpawnBullet (_muzzleTransform.position);
+        var newBulletRb = newBullet.GetComponent<Rigidbody> ();
+        newBulletRb.AddForce (_muzzleTransform.forward * _shootForce, ForceMode.Impulse);
+        OnShoot?.Invoke ();
     }
 
-    private void OnAttachObject(bool value)
-    {
-        
+    private void OnAttachObject (bool value) {
+        _animator.SetBool (_functionAttached, value);
     }
 
-    public void OnToggleFunctionInverse()
-    {
-        if (IsReversed)
-        {
-            GravityPushOn?.Invoke();
-        }
-        else
-        {
-            GravityPullOn?.Invoke();
+    public void OnToggleFunctionInverse () {
+        if (IsReversed) {
+            GravityPushOn?.Invoke ();
+            _animator.SetBool (_reversed, true);
+        } else {
+            GravityPullOn?.Invoke ();
+            _animator.SetBool (_reversed, false);
         }
     }
 }
