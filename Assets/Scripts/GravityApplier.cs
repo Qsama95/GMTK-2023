@@ -8,18 +8,17 @@ public class GravityApplier : MonoBehaviour , IFunctionInversable
     [SerializeField]
     private GravityController _gravityController;
     [SerializeField]
-    private bool _inverseForce;
+    private bool _inverseForce = true;
     [SerializeField, Range (0, 10)]
     private float _force = 5;
 
     private Vector3 _centerPos;
-    private GravityEmitter _gravityEmitter;
     private CharacterController _characterController;
 
+    public bool IsUsingByPlayer;
     public AudioSource gravityFieldApplySound;
 
     private void Awake () {
-        _gravityEmitter = GetComponentInParent<GravityEmitter> ();
     }
 
     private void Start () {
@@ -35,6 +34,12 @@ public class GravityApplier : MonoBehaviour , IFunctionInversable
 
     private void Update () {
         ApplyForceOnPlayer ();
+        CheckIfUsingByPlayer();
+    }
+
+    private void CheckIfUsingByPlayer()
+    {
+        IsUsingByPlayer = transform.root.GetComponent<CharacterController>();
     }
 
     private void ApplyForceOnPlayer () {
@@ -42,6 +47,9 @@ public class GravityApplier : MonoBehaviour , IFunctionInversable
             if (!gravityFieldApplySound.isPlaying) {
                 gravityFieldApplySound.Play ();
             }
+
+            if (_characterController.GetComponent<FPSController>().CharacterStatus
+                == CharacterStatus.OnMovingPlatform) return;
             var inverseFactor = _inverseForce ? -1 : 1;
             _characterController.Move (
                 transform.up * _force * inverseFactor * Time.deltaTime);
@@ -60,7 +68,8 @@ public class GravityApplier : MonoBehaviour , IFunctionInversable
         // check if it is object can be applied on gravity
         if (other.tag.CompareTo ("GravityAppliableObject") == 0) {
             var appliableObj = other.GetComponent<GravityAppliableObject> ();
-            appliableObj.OnApplyExternalGravity (transform.up, _force, _inverseForce);
+            appliableObj.OnApplyExternalGravity (
+                transform.up, _force, _inverseForce, IsUsingByPlayer);
         }
     }
 
@@ -77,7 +86,8 @@ public class GravityApplier : MonoBehaviour , IFunctionInversable
         // check if it is object can be applied on gravity
         if (other.tag.CompareTo ("GravityAppliableObject") == 0) {
             var appliableObj = other.GetComponent<GravityAppliableObject> ();
-            appliableObj.OnApplyExternalGravity (transform.up, _force, _inverseForce);
+            appliableObj.OnApplyExternalGravity (
+                transform.up, _force, _inverseForce, IsUsingByPlayer);
         }
     }
 
@@ -104,19 +114,27 @@ public class GravityApplier : MonoBehaviour , IFunctionInversable
         _characterController = controller;
     }
 
-    private IEnumerator MoveObjectToCenterRay (Transform objTransform) {
+    private IEnumerator MoveObjectToCenterRay (CharacterController controller) {
         var distance = 100f;
         var targetPos = _centerPos + transform.up;
-        targetPos.y = objTransform.position.y;
+        targetPos.y = controller.transform.position.y;
 
         while (distance > 0.01f) {
-            UpdateDistance (objTransform);
-
+            distance = UpdateDistance(controller.transform);
+            //controller.Move()
             yield return null;
         }
     }
 
-    private void UpdateDistance (Transform objTransform) { }
+    private float UpdateDistance (Transform objTransform) 
+    {
+        Vector3 direction = transform.up;
+        Vector3 startingPoint = transform.position;
+
+        Ray ray = new Ray(startingPoint, direction);
+        float distance = Vector3.Cross(ray.direction, objTransform.position - ray.origin).magnitude;
+        return distance;
+    }
 
     public void OnToggleFunctionInverse()
     {

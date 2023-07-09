@@ -15,4 +15,6 @@ public interface IFunctionInversable
 public interface IGravityAppliable
 {
     void OnGravityChanged();
+
+    bool IsPlayerOnIt { get; set; }
 }

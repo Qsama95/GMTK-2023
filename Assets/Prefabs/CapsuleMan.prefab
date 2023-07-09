@@ -130,6 +130,7 @@ MonoBehaviour:
   _gravityController: {fileID: 0}
   _inverseForce: 1
   _force: 5
+  IsUsingByPlayer: 0
   gravityFieldApplySound: {fileID: 0}
 --- !u!1 &1048739306
 GameObject:
@@ -259,10 +260,10 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 86429679918377351}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1485835249
@@ -708,6 +709,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  ToggleGravity:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7249311006574340090
 GameObject:
   m_ObjectHideFlags: 0

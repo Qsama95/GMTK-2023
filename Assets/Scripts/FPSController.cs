@@ -82,7 +82,9 @@ public class FPSController : MonoBehaviour
     private void CheckJumpInput()
     {
         if (Input.GetKeyDown(KeyCode.Space) 
-            && (_isGrounded || _isGroundedOnGravityZone))
+            && (_isGrounded || 
+            _isGroundedOnGravityZone || 
+            _isGroundedOnMovingPlatform))
         {
             _velocity.y = Mathf.Sqrt(_jumpHight * -2f * _gravity);
         }
@@ -128,8 +130,9 @@ public class FPSController : MonoBehaviour
             _groundCheckDistance,
             _movingPlatformMask);
 
-        if (_isGroundedOnMovingPlatform)
+        if (_isGroundedOnMovingPlatform && _velocity.y < 0)
         {
+            _velocity.y = -2f;
             var colliders = Physics.OverlapSphere(
             _groundCheckPoint.position,
             _groundCheckDistance,
@@ -137,7 +140,9 @@ public class FPSController : MonoBehaviour
 
             if (_isMovingByPlayer) return;
             if (colliders.Length == 0) return;
-            _velocity = colliders[0].GetComponent<Rigidbody>().velocity;
+            var tempVelocity = colliders[0].GetComponent<Rigidbody>().velocity;
+            _characterController.Move(tempVelocity * Time.deltaTime);
+
             OnCharacterStatusChanged(CharacterStatus.OnMovingPlatform);
         }
         else
@@ -177,6 +182,30 @@ public class FPSController : MonoBehaviour
         _characterStatus = status;
     }
     #endregion
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<IGravityAppliable>() != null)
+        {
+            other.GetComponent<IGravityAppliable>().IsPlayerOnIt = true;
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.GetComponent<IGravityAppliable>() != null)
+        {
+            other.GetComponent<IGravityAppliable>().IsPlayerOnIt = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<IGravityAppliable>() != null)
+        {
+            other.GetComponent<IGravityAppliable>().IsPlayerOnIt = false;
+        }
+    }
 }
 
 public enum CharacterStatus

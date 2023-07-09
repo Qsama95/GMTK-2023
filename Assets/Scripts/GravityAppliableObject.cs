@@ -9,7 +9,9 @@ public class GravityAppliableObject : MonoBehaviour, IGravityAppliable
     [SerializeField]
     private GravityAppliableObjectType _objectType;
 
-    private Rigidbody _rigidbody; 
+    private Rigidbody _rigidbody;
+
+    public bool IsPlayerOnIt { get; set; }
 
     private void Awake()
     {
@@ -19,11 +21,14 @@ public class GravityAppliableObject : MonoBehaviour, IGravityAppliable
     public void OnApplyExternalGravity(
         Vector3 dir, 
         float force, 
-        bool _inverseForce)
+        bool inverseForce,
+        bool isUsingByPlayer)
     {
+        if (isUsingByPlayer && IsPlayerOnIt) return;
+
         _rigidbody.useGravity = false;
 
-        var inverseFactor = _inverseForce ? -1 : 1;
+        var inverseFactor = inverseForce ? -1 : 1;
         _rigidbody.velocity = dir *
             force *
             inverseFactor *
