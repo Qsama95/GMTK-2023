@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PauseGame : MonoBehaviour {
     public GameObject pauseMenu;
+    public ReverseGun reverseGun;
     private void Update () {
         if (Input.GetKeyDown (KeyCode.Escape)) {
             if (!pauseMenu.active) {
@@ -17,6 +18,7 @@ public class PauseGame : MonoBehaviour {
     }
 
     public void Pause () {
+        reverseGun.enabled = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         pauseMenu.SetActive (true);
@@ -24,6 +26,7 @@ public class PauseGame : MonoBehaviour {
     }
 
     public void UnPause () {
+        reverseGun.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         pauseMenu.SetActive(false);
