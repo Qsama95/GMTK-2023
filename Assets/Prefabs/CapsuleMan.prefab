@@ -147,10 +147,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1281109b980c9254280a21bf923f2a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCam: {fileID: 0}
+  playerCam: {fileID: 86429681338356743}
   maxRaycastDistance: 2
   interactableQueue: {fileID: 0}
-  reverseGun: {fileID: 0}
+  reverseGun: {fileID: 2214025458536674496}
 --- !u!114 &6795499403258494682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
+  m_RequiresDepthTextureOption: 1
   m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
@@ -567,7 +567,7 @@ MonoBehaviour:
   OnShoot:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4940579500090609284}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
         m_Mode: 1
@@ -730,6 +730,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4940579500625728384, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
         type: 3}
+      propertyPath: m_Volume
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4940579500625728384, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2d7f924d8040c164e84b44490f353a7b, type: 3}
+    - target: {fileID: 4940579500625728384, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
+        type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
@@ -800,6 +810,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d, type: 3}
+--- !u!82 &4940579500090609284 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4940579500625728384, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
+    type: 3}
+  m_PrefabInstance: {fileID: 539352324}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4940579500090609291 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4940579500625728399, guid: e9c2e563c4fcdb94ca1cbaa3fc7b470d,
@@ -813,6 +829,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5648880713274158849}
     m_Modifications:
+    - target: {fileID: 663737188954512155, guid: 9eb6afcf1de479c48819eb3a1e6bf61e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 67bfbb89e323c4d4fb1baa1ada0be99f, type: 2}
+    - target: {fileID: 3599761033924707263, guid: 9eb6afcf1de479c48819eb3a1e6bf61e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ac91ee3b57496f74ba3aad08fc0eb404, type: 2}
     - target: {fileID: 3749913058518745068, guid: 9eb6afcf1de479c48819eb3a1e6bf61e,
         type: 3}
       propertyPath: m_RootOrder
@@ -878,6 +904,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5983286858556887400, guid: 9eb6afcf1de479c48819eb3a1e6bf61e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3748687dfddb17b4a9e49e97bc2c1419, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9eb6afcf1de479c48819eb3a1e6bf61e, type: 3}
 --- !u!1 &3649000813459423278 stripped
@@ -954,16 +985,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1628794398546682662, guid: 01761ba2ac08e4140aba1a5a36ab6bbd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3c89429511dc34d46906cb3060dc1923, type: 2}
     - target: {fileID: 1742830199546742223, guid: 01761ba2ac08e4140aba1a5a36ab6bbd,
         type: 3}
       propertyPath: m_Name
       value: ReverseGunMain
       objectReference: {fileID: 0}
+    - target: {fileID: 3339516990384307074, guid: 01761ba2ac08e4140aba1a5a36ab6bbd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b9d8fefbfd6f05549a97d7045236ac72, type: 2}
     - target: {fileID: 6781621837523294953, guid: 01761ba2ac08e4140aba1a5a36ab6bbd,
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 8387584615718498801, guid: 01761ba2ac08e4140aba1a5a36ab6bbd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f0b7b44be3532f4f91c06fc50cb51f9, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01761ba2ac08e4140aba1a5a36ab6bbd, type: 3}
 --- !u!1 &5069009922685535257 stripped
