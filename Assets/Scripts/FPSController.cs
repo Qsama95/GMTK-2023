@@ -182,30 +182,6 @@ public class FPSController : MonoBehaviour
         _characterStatus = status;
     }
     #endregion
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.GetComponent<IGravityAppliable>() != null)
-        {
-            other.GetComponent<IGravityAppliable>().IsPlayerOnIt = true;
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.GetComponent<IGravityAppliable>() != null)
-        {
-            other.GetComponent<IGravityAppliable>().IsPlayerOnIt = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.GetComponent<IGravityAppliable>() != null)
-        {
-            other.GetComponent<IGravityAppliable>().IsPlayerOnIt = false;
-        }
-    }
 }
 
 public enum CharacterStatus

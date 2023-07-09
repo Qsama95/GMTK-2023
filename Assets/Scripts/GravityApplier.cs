@@ -63,7 +63,8 @@ public class GravityApplier : MonoBehaviour , IFunctionInversable
             var fpsController = other.GetComponent<FPSController> ();
             fpsController.OnCharacterStatusChanged (CharacterStatus.InGravityZone);
             var controller = other.GetComponent<CharacterController> ();
-            PlayerEntered (controller);
+            StartCoroutine(MoveObjectToCenterRay(controller));
+            PlayerEntered(controller);
         }
         // check if it is object can be applied on gravity
         if (other.tag.CompareTo ("GravityAppliableObject") == 0) {
@@ -115,25 +116,16 @@ public class GravityApplier : MonoBehaviour , IFunctionInversable
     }
 
     private IEnumerator MoveObjectToCenterRay (CharacterController controller) {
-        var distance = 100f;
-        var targetPos = _centerPos + transform.up;
-        targetPos.y = controller.transform.position.y;
-
-        while (distance > 0.01f) {
-            distance = UpdateDistance(controller.transform);
-            //controller.Move()
+        var timeCount = 1f;
+        
+        while (timeCount > 0f) {
+            timeCount -= Time.deltaTime;
+            var dir = controller.transform.position - _centerPos;
+            var normal = Vector3.Cross(transform.up, dir);
+            var targetDir = Vector3.Cross(normal, transform.up);
+            controller.Move(-targetDir.normalized * _force/5 * Time.deltaTime);
             yield return null;
         }
-    }
-
-    private float UpdateDistance (Transform objTransform) 
-    {
-        Vector3 direction = transform.up;
-        Vector3 startingPoint = transform.position;
-
-        Ray ray = new Ray(startingPoint, direction);
-        float distance = Vector3.Cross(ray.direction, objTransform.position - ray.origin).magnitude;
-        return distance;
     }
 
     public void OnToggleFunctionInverse()
