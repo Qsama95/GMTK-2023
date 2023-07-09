@@ -33,7 +33,21 @@ public class ReverseGun : MonoBehaviour, IFunctionInversable {
     }
 
     void Start () {
-        Init ();
+        //Init ();
+    }
+
+    private void OnEnable()
+    {
+        Init();
+    }
+
+    private void OnDisable()
+    {
+        ToggleGravity.RemoveListener(_gunController.ReverseObjFunction);
+        ToggleGravity.RemoveListener(_gunController.ReverseGunView);
+        RightMouseClick.RemoveListener(_gunController.SetAttachObjectActive);
+
+        _gunController.OnAttachObject -= OnAttachObject;
     }
 
     private void Init () {
@@ -44,13 +58,13 @@ public class ReverseGun : MonoBehaviour, IFunctionInversable {
         _gunController.OnAttachObject += OnAttachObject;
     }
 
-    private void OnDestroy () {
-        ToggleGravity.RemoveListener (_gunController.ReverseObjFunction);
-        ToggleGravity.RemoveListener (_gunController.ReverseGunView);
-        RightMouseClick.RemoveListener(_gunController.SetAttachObjectActive);
+    //private void OnDestroy () {
+    //    ToggleGravity.RemoveListener (_gunController.ReverseObjFunction);
+    //    ToggleGravity.RemoveListener (_gunController.ReverseGunView);
+    //    RightMouseClick.RemoveListener(_gunController.SetAttachObjectActive);
 
-        _gunController.OnAttachObject -= OnAttachObject;
-    }
+    //    _gunController.OnAttachObject -= OnAttachObject;
+    //}
 
     void Update () {
         CheckPlayerInput ();
