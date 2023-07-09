@@ -1082,6 +1082,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3649000813459423278, guid: 4c7a741e7f769694389dc4178bae679a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4940579500090609284, guid: 4c7a741e7f769694389dc4178bae679a,
         type: 3}
       propertyPath: m_audioClip
@@ -1093,6 +1098,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 24300002, guid: 4e0258b5b1c569640849fb0421f8b349,
         type: 2}
+    - target: {fileID: 5069009922685535257, guid: 4c7a741e7f769694389dc4178bae679a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6795499403258494682, guid: 4c7a741e7f769694389dc4178bae679a,
         type: 3}
       propertyPath: deathSound
@@ -13517,7 +13527,7 @@ PrefabInstance:
     - target: {fileID: 7681334558107744046, guid: 0044694d2899b67419c32926bd30228c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 104.52
+      value: 103.54
       objectReference: {fileID: 0}
     - target: {fileID: 7681334558107744046, guid: 0044694d2899b67419c32926bd30228c,
         type: 3}
@@ -13527,7 +13537,7 @@ PrefabInstance:
     - target: {fileID: 7681334558107744046, guid: 0044694d2899b67419c32926bd30228c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.77
+      value: 3.4
       objectReference: {fileID: 0}
     - target: {fileID: 7681334558107744046, guid: 0044694d2899b67419c32926bd30228c,
         type: 3}
