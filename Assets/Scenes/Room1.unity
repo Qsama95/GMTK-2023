@@ -137,6 +137,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1594707595}
     m_Modifications:
+    - target: {fileID: 2929639475068801465, guid: 174d2285323d32344a17356c56dda1d8,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.3715658
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929639475068801465, guid: 174d2285323d32344a17356c56dda1d8,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.021661162
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929639475068801465, guid: 174d2285323d32344a17356c56dda1d8,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.15944475
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929639475068801465, guid: 174d2285323d32344a17356c56dda1d8,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.00000023841856
+      objectReference: {fileID: 0}
     - target: {fileID: 4173695614618103435, guid: 174d2285323d32344a17356c56dda1d8,
         type: 3}
       propertyPath: m_Name
@@ -13141,8 +13161,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.257368, y: 0.8084023, z: 2.9468894}
-  m_Center: {x: 0.020279884, y: -0.020280361, z: 0.00000023841858}
+  m_Size: {x: 2.257368, y: 2.2030458, z: 2.9468894}
+  m_Center: {x: 0.020279884, y: 0.15755132, z: 0.00000023841858}
 --- !u!1 &3101316576051430145
 GameObject:
   m_ObjectHideFlags: 0
